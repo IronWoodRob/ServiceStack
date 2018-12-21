@@ -173,6 +173,7 @@ namespace ServiceStack
 #else
                 UseCamelCase = true,
 #endif
+                CheckClientConnectedBeforeFlush = false
             };
 
             Platform.Instance.InitHostConifg(config);
@@ -254,6 +255,7 @@ namespace ServiceStack
             this.UseCamelCase = instance.UseCamelCase;
             this.UseJsObject = instance.UseJsObject;
             this.EnableOptimizations = instance.EnableOptimizations;
+            this.CheckClientConnectedBeforeFlush = instance.CheckClientConnectedBeforeFlush;
         }
 
         public string WsdlServiceNamespace { get; set; }
@@ -382,6 +384,8 @@ namespace ServiceStack
         private HashSet<string> razorNamespaces;
         public HashSet<string> RazorNamespaces => razorNamespaces 
             ?? (razorNamespaces = Platform.Instance.GetRazorNamespaces());
+
+        public bool CheckClientConnectedBeforeFlush { get; set; }
 
     }
 

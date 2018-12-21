@@ -130,6 +130,9 @@ namespace ServiceStack.Host.AspNet
         {
             this.FlushBufferIfAny(BufferedStream, response.OutputStream);
 
+            if (HostContext.AppHost.Config.CheckClientConnectedBeforeFlush && !response.IsClientConnected)
+                return;
+
             response.Flush();
         }
 
